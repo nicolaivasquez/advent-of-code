@@ -41,34 +41,32 @@ import * as fs from "fs";
  * Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?
  */
 
-(async () => {
-  const file = fs.readFileSync(
-    require.resolve("../input/calorie-counting.txt"),
-    "utf8"
-  );
+const file = fs.readFileSync(
+  require.resolve("../input/calorie-counting.txt"),
+  "utf8"
+);
 
-  const inputArray: string[][] = file
-    // first split by double line breaks -> one array entry for each elf
-    .split("\n\n")
-    // second split is to get a list of calories per elf
-    .map((group) => group.split("\n"));
+const inputArray: string[][] = file
+  // first split by double line breaks -> one array entry for each elf
+  .split("\n\n")
+  // second split is to get a list of calories per elf
+  .map((group) => group.split("\n"));
 
-  const totalCalories = inputArray.map((elf) =>
-    elf.reduce((total, curr) => total + Number(curr) ?? 0, 0)
-  );
+export const totalCalories = inputArray.map((elf) =>
+  elf.reduce((total, curr) => total + Number(curr) ?? 0, 0)
+);
 
-  const elfWithMaxCalories = totalCalories.reduce(
-    ({ elf, total }, curr, index) => {
-      if (curr > total) {
-        return {
-          elf: index,
-          total: curr,
-        };
-      }
-      // current elf has less than max
-      return { elf, total };
-    },
-    { elf: -1, total: 0 }
-  );
-  console.log(elfWithMaxCalories, Math.max(...totalCalories));
-})();
+const elfWithMaxCalories = totalCalories.reduce(
+  ({ elf, total }, curr, index) => {
+    if (curr > total) {
+      return {
+        elf: index,
+        total: curr,
+      };
+    }
+    // current elf has less than max
+    return { elf, total };
+  },
+  { elf: -1, total: 0 }
+);
+console.log(elfWithMaxCalories, Math.max(...totalCalories));
