@@ -38,7 +38,7 @@ const file = fs.readFileSync(
 const firstHands = ["A", "B", "C"] as const;
 const secondHands = ["X", "Y", "Z"] as const;
 // [[A, Y], [B, X], ...]
-const inputArray = file
+export const inputArray = file
   .split("\n")
   .map(
     (strat) =>
@@ -48,7 +48,7 @@ const inputArray = file
       ]
   );
 
-const handScores = {
+export const handScores = {
   A: 1, // rock
   B: 2, // paper
   C: 3, // scissors
@@ -57,7 +57,7 @@ const handScores = {
   Z: 3, // scissors
 };
 
-enum Results {
+export enum Results {
   LOST,
   WON,
   DRAW,
@@ -80,7 +80,7 @@ const possibilities = [
   [Results.WON, Results.LOST, Results.DRAW],
 ];
 
-const resultScores = {
+export const resultScores = {
   [Results.LOST]: 0,
   [Results.WON]: 6,
   [Results.DRAW]: 3,
